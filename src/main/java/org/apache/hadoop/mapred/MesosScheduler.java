@@ -689,7 +689,37 @@ public class MesosScheduler extends TaskScheduler implements Scheduler {
                 .setName("JAVA_LIBRARY_PATH")
                 .setValue(env.get("JAVA_LIBRARY_PATH")));
           }
+          
+          if (env.containsKey("HADOOP_CONF_DIR")) {
+            envBuilder.addVariables(Protos.Environment.Variable.newBuilder()
+                .setName("HADOOP_CONF_DIR")
+                .setValue(env.get("HADOOP_CONF_DIR")));
+          }
 
+          if (env.containsKey("HADOOP_CLASSPATH")) {
+            envBuilder.addVariables(Protos.Environment.Variable.newBuilder()
+                .setName("HADOOP_CLASSPATH")
+                .setValue(env.get("HADOOP_CLASSPATH")));
+          }
+          
+          if (env.containsKey("HADOOP_ROOT_LOGGER")) {
+            envBuilder.addVariables(Protos.Environment.Variable.newBuilder()
+                .setName("HADOOP_ROOT_LOGGER")
+                .setValue(env.get("HADOOP_ROOT_LOGGER")));
+          }
+          
+          if (env.containsKey("HADOOP_SECURITY_LOGGER")) {
+            envBuilder.addVariables(Protos.Environment.Variable.newBuilder()
+                .setName("HADOOP_SECURITY_LOGGER")
+                .setValue(env.get("HADOOP_SECURITY_LOGGER")));
+          }
+          
+          if (env.containsKey("HDFS_AUDIT_LOGGER")) {
+            envBuilder.addVariables(Protos.Environment.Variable.newBuilder()
+                .setName("HDFS_AUDIT_LOGGER")
+                .setValue(env.get("HDFS_AUDIT_LOGGER")));
+          }
+          
           // Command info differs when performing a local run.
           CommandInfo commandInfo = null;
           String master = conf.get("mapred.mesos.master");
